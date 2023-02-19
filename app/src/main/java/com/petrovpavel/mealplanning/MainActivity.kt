@@ -3,13 +3,12 @@ package com.petrovpavel.mealplanning
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.petrovpavel.mealplanning.ui.theme.MealPlanningTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,12 +16,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MealPlanningTheme {
+                val navController = rememberNavController()
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.primary
                 ) {
-                    Greeting("Android")
+                    BottomNavigation(navController)
                 }
             }
         }
@@ -30,14 +29,18 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+fun BottomNavigation(navHostController: NavHostController) {
+    var selectedItem by remember { mutableStateOf(0) }
+    val items = listOf("Receipts", "Meal plan", "Cart", "Account")
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MealPlanningTheme {
-        Greeting("Android")
+    NavigationBar {
+        items.forEachIndexed { index, item ->
+            NavigationBarItem(
+                icon = { Icon(Icons.Filled.Favorite, contentDescription = item) },
+                label = { Text(item) },
+                selected = selectedItem == index,
+                onClick = { selectedItem = index }
+            )
+        }
     }
 }
