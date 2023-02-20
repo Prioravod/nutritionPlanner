@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.navigation.compose.rememberNavController
+import com.petrovpavel.mealplanning.bottom.BottomNavView
 import com.petrovpavel.mealplanning.ui.theme.MealPlanningTheme
 
 class MainActivity : ComponentActivity() {
