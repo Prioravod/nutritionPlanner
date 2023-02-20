@@ -1,4 +1,6 @@
-package com.petrovpavel.mealplanning
+package com.petrovpavel.mealplanning.bottom
+
+import com.petrovpavel.mealplanning.R
 
 sealed class BottomNavItem(var title:String, var icon:Int, var screen_route:String){
 

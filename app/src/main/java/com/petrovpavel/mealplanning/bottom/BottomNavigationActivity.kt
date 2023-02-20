@@ -1,4 +1,4 @@
-package com.petrovpavel.mealplanning
+package com.petrovpavel.mealplanning.bottom
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
